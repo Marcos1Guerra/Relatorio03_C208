@@ -1,0 +1,28 @@
+.data
+prompt: .asciiz "Digite a sua idade: "
+result: .word 0
+
+.text
+main:
+    # Solicita ao usuário que insira a idade
+    li $v0, 4
+    la $a0, prompt
+    syscall
+
+    # Lê a idade inserida pelo usuário
+    li $v0, 5
+    syscall
+    move $t0, $v0  # Armazena a idade em $t0
+
+    # Calcula a idade daqui a 30 anos
+    li $t1, 30
+    add $t2, $t0, $t1
+
+    # Mostra a idade daqui a 30 anos
+    li $v0, 1
+    move $a0, $t2
+    syscall
+
+    # Termina o programa
+    li $v0, 10
+    syscall

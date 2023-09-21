@@ -1,0 +1,21 @@
+.data
+a:  .byte 54      # Declara e inicializa a variável 'a' com o valor 54
+b:  .byte 45      # Declara e inicializa a variável 'b' com o valor 45
+
+.text
+main:
+    # Carrega os valores de 'a' e 'b' em registradores
+    lb $t0, a      # Carrega o valor de 'a' em $t0
+    lb $t1, b      # Carrega o valor de 'b' em $t1
+
+    # Soma 'a' e 'b' e armazena o resultado em $t2
+    add $t2, $t0, $t1
+
+    # Imprime o resultado
+    li $v0, 1       # Código de serviço para imprimir inteiro
+    move $a0, $t2   # Coloca o resultado em $a0
+    syscall
+
+    # Termina o programa
+    li $v0, 10      # Código de serviço para encerrar o programa
+    syscall
